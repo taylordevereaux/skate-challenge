@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <mat-form-field >
+    <mat-label>Time</mat-label>
+    <input matInput [(ngModel)]="timeString" #timeModel="ngModel" cdkFocusInitial mask="00:00:000" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <span class="flex-fill"></span>
+  <button mat-button (click)="done()">Done</button>
+</div>

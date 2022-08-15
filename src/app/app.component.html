@@ -1,5 +1,35 @@
 <div class="content" role="main">
-    <div class="container">
-        <router-outlet></router-outlet> 
-    </div>
+  <mat-toolbar class="toolbar">
+    <button
+      *ngIf="this.store.showBack$ | async; else homeButton"
+      mat-icon-button
+      class="back-icon"
+      aria-label="Back icon-button with back arrow icon"
+      (click)="this.location.back()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <ng-template #homeButton>
+      <button
+        mat-icon-button
+        class="home-icon"
+        aria-label="Home icon-button with home icon"
+        [routerLink]="['/']"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+    </ng-template>
+
+    <span class="spacer">30 Day Manual Challenge</span>
+    <button
+      mat-icon-button
+      class="info-icon"
+      aria-label="Info icon-button with nfo icon"
+    >
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="content-inner">
+    <router-outlet></router-outlet>
+  </div>
 </div>

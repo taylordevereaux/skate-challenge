@@ -32,6 +32,26 @@ export class AppStore extends Store<AppState> {
     return this.state$.pipe(map((state) => state.entries));
   }
 
+  get showBack$(): Observable<boolean> {
+    return this.state$.pipe(map(state => state.showBack));
+  }
+  get showBack() {
+    return this.state.showBack;
+  }
+
+  set showBack(value: boolean) {
+    if (value !== this.state.showBack) {
+        this.setState({
+            ...this.state,
+            showBack: value
+        });
+    }
+  }
+
+  getEntry$(day: number): Observable<Entry> {
+    return this.state$.pipe(map(state => state.entries.find(x => x.day === day)));
+  } 
+
   load() {
     let dataString = localStorage.getItem('skate-data');
     if (!dataString) {
@@ -41,6 +61,7 @@ export class AppStore extends Store<AppState> {
     let entries = JSON.parse(dataString);
     if (entries && entries.length == 30) {
       this.setState({
+        ...this.state,
         entries,
       });
     } else {
@@ -53,12 +74,12 @@ export class AppStore extends Store<AppState> {
     localStorage.setItem('skate-data', entriesString);
   }
 
-  updateDay(day: number, time: number) {
+  updateEntry(entry: Entry) {
     let entries = this.state.entries.map(x => {
-        if (x.day == day) {
+        if (x.day == entry.day) {
             return {
-                day,
-                time
+              ...x,
+              ...entry
             };
         }
         return x;
@@ -76,9 +97,11 @@ export class AppStore extends Store<AppState> {
       entries.push({
         day: i,
         time: 0,
+        notes: '',
       });
     }
     this.setState({
+      ...this.state,
       entries,
     });
   }

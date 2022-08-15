@@ -23,6 +23,7 @@
     "@types/chart.js": "^2.9.37",
     "bootstrap": "^5.2.0",
     "chart.js": "^3.9.1",
+    "ngx-mask": "^14.0.3",
     "rxjs": "~7.5.0",
     "rxjs-observable-store": "^3.1.0",
     "tslib": "^2.3.0",

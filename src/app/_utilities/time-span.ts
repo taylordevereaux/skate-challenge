@@ -118,7 +118,7 @@ export class TimeSpan {
     }
 
     public get seconds(): number {
-        return TimeSpan.round((this._millis / MILLIS_PER_SECOND));
+        return TimeSpan.round((this._millis / MILLIS_PER_SECOND) % 60);
     }
 
     public get milliseconds(): number {

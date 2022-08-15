@@ -1,42 +1,51 @@
-<div class="row my-3">
+<div class="container">
+  <div class="row mt-3">
     <div class="col">
-      <mat-card>
-        <mat-card-content class="text-center"> <h1 class="m-0 p-0">30 DAY MANUAL CHALLENGE</h1> </mat-card-content>
+      <div>
+        <mat-card>
+          <mat-card-content>
+            <app-line-chart
+              [dataSource]="this.store.dataPoints$"
+            ></app-line-chart>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3 mb-3 ">
+    <div class="col">
+      <mat-card >
+        <mat-card-content>
+          <table
+            mat-table
+            [dataSource]="this.store.entries$"
+            class="mat-elevation-z8"
+          >
+            <ng-container matColumnDef="day">
+              <th mat-header-cell *matHeaderCellDef>Day</th>
+              <td mat-cell *matCellDef="let element">{{ element.day }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="time">
+              <th mat-header-cell *matHeaderCellDef>Time</th>
+              <td mat-cell *matCellDef="let element">
+                <span *ngIf="getTimeSpan(element.time); let time"
+                  >{{ time.minutes.toString().padStart(2, "0") }}:{{
+                    time.seconds.toString().padStart(2, "0")
+                  }}:{{ time.milliseconds.toString().padStart(3, "0") }}</span
+                >
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              [routerLink]="[row.day]"
+            ></tr>
+          </table>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>
-    <div class="row mb-3">
-        <div class="col">
-            <div>
-                <mat-card>
-                    <mat-card-content>
-                        <app-line-chart [dataSource]="this.store.dataPoints$"></app-line-chart>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col">
-            <mat-card>
-                <mat-card-content>
-                    <table mat-table [dataSource]="this.store.entries$" class="mat-elevation-z8">
-                            
-                        <ng-container matColumnDef="day">
-                          <th mat-header-cell *matHeaderCellDef> Day </th>
-                          <td mat-cell *matCellDef="let element"> {{element.day}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="time">
-                          <th mat-header-cell *matHeaderCellDef> Time </th>
-                          <td mat-cell *matCellDef="let element"> <span *ngIf="getTimeSpan(element.time); let time">{{ time.minutes.toString().padStart(2, '0') }}:{{ time.seconds.toString().padStart(2, '0') }}:{{ time.milliseconds.toString().padStart(3, '0') }}</span></td>
-                        </ng-container>
-                      
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="[row.day]"></tr>
-                      </table>        
-                </mat-card-content>
-            </mat-card>
-            
-        </div>
-    </div>
+</div>

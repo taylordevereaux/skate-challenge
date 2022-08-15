@@ -28,10 +28,36 @@ $prefix: "mo-";
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+
+// Theme Config
+
+body {
+  --primary-color: #87551a;
+  --primary-lighter-color: #dbccba;
+  --primary-darker-color: #6a3b0f;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}   
+  
+$mat-primary: (
+  main: #87551a,
+  lighter: #dbccba,
+  darker: #6a3b0f,
+  200: #87551a, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+
+$theme-primary: mat-palette($mat-primary, main, lighter, darker);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$sql-tools-primary: mat-palette($mat-purple, 600, 300, 300, 300);
+// $sql-tools-primary: mat-palette($mat-purple, 600, 300, 300, 300);
 $sql-tools-accent: mat-palette($mat-grey, 900, 800, 700, 600);
 
 // The warn palette is optional (defaults to red).
@@ -42,7 +68,7 @@ $sql-tools-success: mat-palette($mat-green);
 // theming systems such as "color" or "typography".
 $sql-tools-theme: mat-dark-theme((
   color: (
-    primary: $sql-tools-primary,
+    primary: $theme-primary,
     accent: $sql-tools-accent,
     warn: $sql-tools-warn,
     success: $sql-tools-success,

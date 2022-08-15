@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatCardModule } from '@angular/material/card';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -30,9 +31,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { TimeEntryComponent } from './time-entry/time-entry.component';
+import { ManualEntryDialogComponent } from './time-entry/manual-entry-dialog/manual-entry-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, LineChartComponent, TimeEntryComponent],
+  declarations: [AppComponent, DashboardComponent, LineChartComponent, TimeEntryComponent, ManualEntryDialogComponent],
   imports: [
     BrowserModule,
 
@@ -54,6 +57,11 @@ import { TimeEntryComponent } from './time-entry/time-entry.component';
     MatTableModule,
     MatCardModule,
 
+    FormsModule,
+    ReactiveFormsModule,
+
+    NgxMaskModule.forRoot(),
+    
     AppRoutingModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

@@ -1,0 +1,23 @@
+.toolbar {
+    background-color: #87551a;
+    position: absolute;
+    top: 0;
+}
+
+.content {
+    height: 100vh;
+
+    > .content-inner {
+        position: absolute;
+        top: 64px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow-y: scroll;
+    }
+}
+
+.spacer  {
+  flex: 1 1 auto;
+  text-align: center;
+}
