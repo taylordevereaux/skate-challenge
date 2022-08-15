@@ -28,5 +28,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   }
 
+  getTimeSpan(time: number) {
+    return TimeSpan.fromMilliseconds(time);
+  }
+
 }
 

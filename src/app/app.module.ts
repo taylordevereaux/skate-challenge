@@ -29,9 +29,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { environment } from '../environments/environment';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { TimeEntryComponent } from './time-entry/time-entry.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, LineChartComponent],
+  declarations: [AppComponent, DashboardComponent, LineChartComponent, TimeEntryComponent],
   imports: [
     BrowserModule,
 

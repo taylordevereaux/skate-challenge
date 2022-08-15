@@ -53,6 +53,23 @@ export class AppStore extends Store<AppState> {
     localStorage.setItem('skate-data', entriesString);
   }
 
+  updateDay(day: number, time: number) {
+    let entries = this.state.entries.map(x => {
+        if (x.day == day) {
+            return {
+                day,
+                time
+            };
+        }
+        return x;
+    });
+
+    this.setState({
+        ...this.state,
+        entries
+    });
+  }
+
   private preloadData() {
     let entries: Entry[] = [];
     for (let i: number = 1; i <= 30; ++i) {
